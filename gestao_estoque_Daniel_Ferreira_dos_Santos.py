@@ -124,33 +124,33 @@ def alertar_estoque_baixo(limite):
             print(f"Nome: {produto['nome']}")
             print(f"Quantidade: {produto['quantidade']}")
 
-    # Caso nenhum produto esteja abaixo do limite
+    #Caso nenhum produto esteja abaixo do limite
     if not encontrou:
         print("\n Nenhum produto com estoque baixo.")
 
 
-# =========================================================
-# FUNÇÃO PARA LISTAR TODOS OS PRODUTOS
-# =========================================================
+print("=" * 50)
+#FUNÇÃO PARA LISTAR TODOS OS PRODUTOS
+print("=" * 50)
 def listar_produtos():
     """Lista todos os produtos cadastrados"""
 
-    # Verifica se o estoque está vazio
+    #Verifica se o estoque está vazio
     if len(estoque) == 0:
 
-        # Mensagem caso não existam produtos
+        #Mensagem caso não existam produtos
         print("\n Nenhum produto cadastrado.")
 
-        # Encerra a função
+        #Encerra a função
         return
 
-    # Título da listagem
+    #Título da listagem
     print("\n========== LISTA DE PRODUTOS ==========")
 
-    # Percorre todos os produtos cadastrados
+    #Percorre todos os produtos cadastrados
     for produto_id, produto in estoque.items():
 
-        # Exibe os dados do produto
+        #Exibe os dados do produto
         print(f"\nID: {produto_id}")
         print(f"Nome: {produto['nome']}")
         print(f"Categoria: {produto['categoria']}")
@@ -158,14 +158,14 @@ def listar_produtos():
         print(f"Quantidade: {produto['quantidade']}")
 
 
-# =========================================================
-# MENU PRINCIPAL DO SISTEMA
-# =========================================================
+print("=" * 50)
+#MENU PRINCIPAL DO SISTEMA
+print("=" * 50)
 
-# Loop infinito para manter o sistema funcionando
+#Loop infinito para manter o sistema funcionando
 while True:
 
-    # Exibição do menu
+    #Exibição do menu
     print("\n===================================")
     print(" SISTEMA DE GESTÃO DE ESTOQUE ")
     print("===================================")
@@ -178,17 +178,17 @@ while True:
     print("6 - Listar produtos")
     print("0 - Sair")
 
-    # Recebe a opção escolhida pelo usuário
+    #Recebe a opção escolhida pelo usuário
     opcao = input("\nEscolha uma opção: ")
 
-    # =====================================================
-    # OPÇÃO 1 - CADASTRAR PRODUTO
-    # =====================================================
+    print("=" * 50)
+    #OPÇÃO 1 - CADASTRAR PRODUTO
+    print("=" * 50)
     if opcao == "1":
 
         try:
 
-            # Solicita os dados do produto
+            #Solicita os dados do produto
             nome = input("Nome do produto: ")
 
             categoria = input("Categoria: ")
@@ -197,114 +197,114 @@ while True:
 
             quantidade = int(input("Quantidade inicial: "))
 
-            # Chama a função de cadastro
+            #Chama a função de cadastro
             cadastrar_produto(nome, categoria, preco, quantidade)
 
         except ValueError:
 
-            # Erro caso o usuário digite valores inválidos
+            #Erro caso o usuário digite valores inválidos
             print("\n Erro: digite valores válidos!")
 
-    # =====================================================
-    # OPÇÃO 2 - REGISTRAR ENTRADA
-    # =====================================================
+    print("=" * 50)
+    #OPÇÃO 2 - REGISTRAR ENTRADA
+    print("=" * 50)
     elif opcao == "2":
 
         try:
 
-            # Solicita os dados
+            #Solicita os dados
             produto_id = int(input("ID do produto: "))
 
             quantidade = int(input("Quantidade de entrada: "))
 
-            # Chama a função de entrada
+            #Chama a função de entrada
             registrar_entrada(produto_id, quantidade)
 
         except ValueError:
 
-            # Erro de digitação
+            #Erro de digitação
             print("\n Erro: digite números válidos!")
 
-    # =====================================================
-    # OPÇÃO 3 - REGISTRAR SAÍDA
-    # =====================================================
+    print("=" * 50)
+    #OPÇÃO 3 - REGISTRAR SAÍDA
+    print("=" * 50)
     elif opcao == "3":
 
         try:
 
-            # Solicita os dados
+            #Solicita os dados
             produto_id = int(input("ID do produto: "))
 
             quantidade = int(input("Quantidade de saída: "))
 
-            # Chama a função de saída
+            #Chama a função de saída
             registrar_saida(produto_id, quantidade)
 
         except ValueError:
 
-            # Erro de digitação
+            #Erro de digitação
             print("\n Erro: digite números válidos!")
 
-    # =====================================================
-    # OPÇÃO 4 - CONSULTAR ESTOQUE
-    # =====================================================
+    print("=" * 50)
+    #OPÇÃO 4 - CONSULTAR ESTOQUE
+    print("=" * 50)
     elif opcao == "4":
 
         try:
 
-            # Solicita o ID do produto
+            #Solicita o ID do produto
             produto_id = int(input("ID do produto: "))
 
-            # Consulta o produto
+            #Consulta o produto
             consultar_estoque(produto_id)
 
         except ValueError:
 
-            # Erro de digitação
+            #Erro de digitação
             print("\n Erro: digite um ID válido!")
 
-    # =====================================================
-    # OPÇÃO 5 - ALERTA DE ESTOQUE BAIXO
-    # =====================================================
+    print("=" * 50)
+    #OPÇÃO 5 - ALERTA DE ESTOQUE BAIXO
+    print("=" * 50)
     elif opcao == "5":
 
         try:
 
-            # Solicita o limite mínimo
+            #Solicita o limite mínimo
             limite = int(input("Digite o limite mínimo: "))
 
-            # Chama a função de alerta
+            #Chama a função de alerta
             alertar_estoque_baixo(limite)
 
         except ValueError:
 
-            # Erro de digitação
+            #Erro de digitação
             print("\n Erro: digite um número válido!")
 
-    # =====================================================
-    # OPÇÃO 6 - LISTAR PRODUTOS
-    # =====================================================
+    print("=" * 50)
+    #OPÇÃO 6 - LISTAR PRODUTOS
+    print("=" * 50)
     elif opcao == "6":
 
-        # Exibe todos os produtos
+        #Exibe todos os produtos
         listar_produtos()
 
-    # =====================================================
-    # OPÇÃO 0 - SAIR DO SISTEMA
-    # =====================================================
+    print("=" * 50)
+    #OPÇÃO 0 - SAIR DO SISTEMA
+    print("=" * 50)
     elif opcao == "0":
 
-        # Mensagem de encerramento
+        #Mensagem de encerramento
         print("\nEncerrando o sistema...")
 
-        # Interrompe o loop principal
+        #Interrompe o loop principal
         break
 
     print("=" * 50)
-    # CASO O USUÁRIO DIGITE UMA OPÇÃO INVÁLIDA
+    #CASO O USUÁRIO DIGITE UMA OPÇÃO INVÁLIDA
     print("=" * 50)
     else:
 
-        # Mensagem de erro
+        #Mensagem de erro
         print("\n Opção inválida!")
         
