@@ -1,7 +1,5 @@
 # =========================================================
 # SISTEMA DE GESTÃO DE ESTOQUE
-# Nome do arquivo:
-# gestao_estoque_Daniel_Ferreira_dos_Santos.py
 # =========================================================
 
 
