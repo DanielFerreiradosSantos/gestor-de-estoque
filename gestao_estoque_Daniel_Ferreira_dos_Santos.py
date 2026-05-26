@@ -1,156 +1,175 @@
-#multiplica "=" por 50 usando print para criar enfeite 
-print("=" * 50)
-#SISTEMA DE GESTÃO DE ESTOQUE
-print("=" * 50)
+# =========================================================
+# SISTEMA DE GESTÃO DE ESTOQUE
+# Nome do arquivo:
+# gestao_estoque_Daniel_Ferreira_dos_Santos.py
+# =========================================================
 
-#Dicionário principal onde todos os produtos serão armazenados
+
+# Dicionário principal onde todos os produtos serão armazenados
 estoque = {}
 
-#Variável usada para gerar IDs automáticos para os produtos
+# Variável usada para gerar IDs automáticos para os produtos
 proximo_id = 1
 
-print("=" * 50)
-#FUNÇÃO PARA CADASTRAR PRODUTOS
-print("=" * 50)
-def cadastrar_produto(nome, categoria, preço, quantidade):
+
+# =========================================================
+# FUNÇÃO PARA CADASTRAR PRODUTOS
+# =========================================================
+def cadastrar_produto(nome, categoria, preco, quantidade):
     """Registra novo produto no sistema"""
-    
-    #Permite modificar a variável global proximo_id
+
+    # Permite modificar a variável global proximo_id
     global proximo_id
-    
-    #criação do dicionário do produto
+
+    # Criação do dicionário do produto
     produto = {
         "nome": nome,
         "categoria": categoria,
-        "preço": quantidade
-    }  
-   
-    #Armazena o produto dentro do estoque usando o ID
+        "preco": preco,
+        "quantidade": quantidade
+    }
+
+    # Armazena o produto dentro do estoque usando o ID
     estoque[proximo_id] = produto
-    
-    #Exibe mensagem de sucesso
+
+    # Exibe mensagem de sucesso
     print("\n Produto cadastrado com sucesso!")
 
-    #mostra o ID gerado para o produto
+    # Mostra o ID gerado para o produto
     print(f"ID do produto: {proximo_id}")
 
-    #incrementa o ID para o próximo produto
+    # Incrementa o ID para o próximo produto
     proximo_id += 1
 
-print("=" * 50)
-#FUNÇÃO PARA REGISTRAR ENTRADA DE PRODUTOS
-print("=" * 50)
+
+# =========================================================
+# FUNÇÃO PARA REGISTRAR ENTRADA DE PRODUTOS
+# =========================================================
 def registrar_entrada(produto_id, quantidade):
-    """adiciona itens ao estoque"""
-    
-    #verifica se o produto existe no estoque
+    """Adiciona itens ao estoque"""
+
+    # Verifica se o produto existe no estoque
     if produto_id in estoque:
-        
-        #Soma a quantidade informada ao estoque atual
+
+        # Soma a quantidade informada ao estoque atual
         estoque[produto_id]["quantidade"] += quantidade
 
-        #mensagem de sucesso
+        # Mensagem de sucesso
         print("\n Entrada registrada com sucesso!")
-    else:
-        #Mensagem caso o produto não exista
-        print("\n produto não encontrado!")
 
-print("=" * 50)
-#FUNÇÃO PARA REGISTRAR A SAÍDA DE PRODUTOS
-print("=" * 50)
+    else:
+        # Mensagem caso o produto não exista
+        print("\n Produto não encontrado!")
+
+
+# =========================================================
+# FUNÇÃO PARA REGISTRAR SAÍDA DE PRODUTOS
+# =========================================================
 def registrar_saida(produto_id, quantidade):
     """Remove itens do estoque"""
-    
-    #Verifica se o produto existe
+
+    # Verifica se o produto existe
     if produto_id in estoque:
-        
-        #Armazena a quantidade atual do produto
-        quantidade atual = estoque[produto_id]["quantidade"]
-        
-        #Verifica se há quantidade suficiente no estoque
+
+        # Armazena a quantidade atual do produto
+        quantidade_atual = estoque[produto_id]["quantidade"]
+
+        # Verifica se há quantidade suficiente no estoque
         if quantidade <= quantidade_atual:
-            #Subtrai a quantidade do estoque
+
+            # Subtrai a quantidade do estoque
             estoque[produto_id]["quantidade"] -= quantidade
-            #mensagem de sucesso
-            print("\n saída registrada com sucesso!")
-         
+
+            # Mensagem de sucesso
+            print("\n Saída registrada com sucesso!")
+
         else:
-            #mensagem de erro caso não tenha estoque suficiente
+            # Mensagem de erro caso não tenha estoque suficiente
             print("\n Estoque insuficiente!")
-print("=" * 50)
-#FUNÇÃO PARA CONSULTAR PRODUTOS
-print("=" * 50)
+
+    else:
+        # Mensagem caso o produto não exista
+        print("\n Produto não encontrado!")
+
+
+# =========================================================
+# FUNÇÃO PARA CONSULTAR PRODUTOS
+# =========================================================
 def consultar_estoque(produto_id):
     """Verifica saldo atual do produto"""
 
-    #Verifica se o produto existe
-    if produto_id ind estoque:
-        #Armazena os dados do produto em uma variável
+    # Verifica se o produto existe
+    if produto_id in estoque:
+
+        # Armazena os dados do produto em uma variável
         produto = estoque[produto_id]
 
-        #Exibe os dados do produto
-        print("\n======== DADOS DO PRODUTOS ========")
+        # Exibe os dados do produto
+        print("\n========== DADOS DO PRODUTO ==========")
         print(f"ID: {produto_id}")
         print(f"Nome: {produto['nome']}")
         print(f"Categoria: {produto['categoria']}")
-        print(f"Preço: R$ {Produto[preco]:.2f}")
+        print(f"Preço: R$ {produto['preco']:.2f}")
         print(f"Quantidade em estoque: {produto['quantidade']}")
+
     else:
-        #Mensagem caso o produto não exista
-        print("\n produto não encontrado!")
-print("=" * 50)
-#FUNÇÃO PARA IDENTIFICAR ESTOQUE BAIXO
-print("=" * 50)
+        # Mensagem caso o produto não exista
+        print("\n Produto não encontrado!")
+
+
+# =========================================================
+# FUNÇÃO PARA IDENTIFICAR ESTOQUE BAIXO
+# =========================================================
 def alertar_estoque_baixo(limite):
-    """Identifica produto com estoque crítico"""
-    
-    #Título da área de alerta
-    print("\n======== ESTOQUE BAIXO ========")
-    
-    #Variável de controle
+    """Identifica produtos com estoque crítico"""
+
+    # Título da área de alerta
+    print("\n========== ESTOQUE BAIXO ==========")
+
+    # Variável de controle
     encontrou = False
 
     # Percorre todos os produtos do estoque
     for produto_id, produto in estoque.items():
 
-        #Verifica se a quantidade é menor que o limite
+        # Verifica se a quantidade é menor que o limite
         if produto["quantidade"] < limite:
 
-            #Marca que encontrou um produto crítivo
+            # Marca que encontrou um produto crítico
             encontrou = True
-            
-            #Exibe dados do produto
+
+            # Exibe os dados do produto
             print(f"\nID: {produto_id}")
             print(f"Nome: {produto['nome']}")
             print(f"Quantidade: {produto['quantidade']}")
 
-    #Caso nenhum produto esteja abaixo do limite
+    # Caso nenhum produto esteja abaixo do limite
     if not encontrou:
         print("\n Nenhum produto com estoque baixo.")
 
 
-print("=" * 50)
-#FUNÇÃO PARA LISTAR TODOS OS PRODUTOS
-print("=" * 50)
+# =========================================================
+# FUNÇÃO PARA LISTAR TODOS OS PRODUTOS
+# =========================================================
 def listar_produtos():
     """Lista todos os produtos cadastrados"""
 
-    #Verifica se o estoque está vazio
+    # Verifica se o estoque está vazio
     if len(estoque) == 0:
 
-        #Mensagem caso não existam produtos
+        # Mensagem caso não existam produtos
         print("\n Nenhum produto cadastrado.")
 
-        #Encerra a função
+        # Encerra a função
         return
 
-    #Título da listagem
+    # Título da listagem
     print("\n========== LISTA DE PRODUTOS ==========")
 
-    #Percorre todos os produtos cadastrados
+    # Percorre todos os produtos cadastrados
     for produto_id, produto in estoque.items():
 
-        #Exibe os dados do produto
+        # Exibe os dados do produto
         print(f"\nID: {produto_id}")
         print(f"Nome: {produto['nome']}")
         print(f"Categoria: {produto['categoria']}")
@@ -158,14 +177,14 @@ def listar_produtos():
         print(f"Quantidade: {produto['quantidade']}")
 
 
-print("=" * 50)
-#MENU PRINCIPAL DO SISTEMA
-print("=" * 50)
+# =========================================================
+# MENU PRINCIPAL DO SISTEMA
+# =========================================================
 
-#Loop infinito para manter o sistema funcionando
+# Loop infinito para manter o sistema funcionando
 while True:
 
-    #Exibição do menu
+    # Exibição do menu
     print("\n===================================")
     print(" SISTEMA DE GESTÃO DE ESTOQUE ")
     print("===================================")
@@ -178,17 +197,17 @@ while True:
     print("6 - Listar produtos")
     print("0 - Sair")
 
-    #Recebe a opção escolhida pelo usuário
+    # Recebe a opção escolhida pelo usuário
     opcao = input("\nEscolha uma opção: ")
 
-    print("=" * 50)
-    #OPÇÃO 1 - CADASTRAR PRODUTO
-    print("=" * 50)
+    # =====================================================
+    # OPÇÃO 1 - CADASTRAR PRODUTO
+    # =====================================================
     if opcao == "1":
 
         try:
 
-            #Solicita os dados do produto
+            # Solicita os dados do produto
             nome = input("Nome do produto: ")
 
             categoria = input("Categoria: ")
@@ -197,114 +216,114 @@ while True:
 
             quantidade = int(input("Quantidade inicial: "))
 
-            #Chama a função de cadastro
+            # Chama a função de cadastro
             cadastrar_produto(nome, categoria, preco, quantidade)
 
         except ValueError:
 
-            #Erro caso o usuário digite valores inválidos
+            # Erro caso o usuário digite valores inválidos
             print("\n Erro: digite valores válidos!")
 
-    print("=" * 50)
-    #OPÇÃO 2 - REGISTRAR ENTRADA
-    print("=" * 50)
+    # =====================================================
+    # OPÇÃO 2 - REGISTRAR ENTRADA
+    # =====================================================
     elif opcao == "2":
 
         try:
 
-            #Solicita os dados
+            # Solicita os dados
             produto_id = int(input("ID do produto: "))
 
             quantidade = int(input("Quantidade de entrada: "))
 
-            #Chama a função de entrada
+            # Chama a função de entrada
             registrar_entrada(produto_id, quantidade)
 
         except ValueError:
 
-            #Erro de digitação
+            # Erro de digitação
             print("\n Erro: digite números válidos!")
 
-    print("=" * 50)
-    #OPÇÃO 3 - REGISTRAR SAÍDA
-    print("=" * 50)
+    # =====================================================
+    # OPÇÃO 3 - REGISTRAR SAÍDA
+    # =====================================================
     elif opcao == "3":
 
         try:
 
-            #Solicita os dados
+            # Solicita os dados
             produto_id = int(input("ID do produto: "))
 
             quantidade = int(input("Quantidade de saída: "))
 
-            #Chama a função de saída
+            # Chama a função de saída
             registrar_saida(produto_id, quantidade)
 
         except ValueError:
 
-            #Erro de digitação
+            # Erro de digitação
             print("\n Erro: digite números válidos!")
 
-    print("=" * 50)
-    #OPÇÃO 4 - CONSULTAR ESTOQUE
-    print("=" * 50)
+    # =====================================================
+    # OPÇÃO 4 - CONSULTAR ESTOQUE
+    # =====================================================
     elif opcao == "4":
 
         try:
 
-            #Solicita o ID do produto
+            # Solicita o ID do produto
             produto_id = int(input("ID do produto: "))
 
-            #Consulta o produto
+            # Consulta o produto
             consultar_estoque(produto_id)
 
         except ValueError:
 
-            #Erro de digitação
+            # Erro de digitação
             print("\n Erro: digite um ID válido!")
 
-    print("=" * 50)
-    #OPÇÃO 5 - ALERTA DE ESTOQUE BAIXO
-    print("=" * 50)
+    # =====================================================
+    # OPÇÃO 5 - ALERTA DE ESTOQUE BAIXO
+    # =====================================================
     elif opcao == "5":
 
         try:
 
-            #Solicita o limite mínimo
+            # Solicita o limite mínimo
             limite = int(input("Digite o limite mínimo: "))
 
-            #Chama a função de alerta
+            # Chama a função de alerta
             alertar_estoque_baixo(limite)
 
         except ValueError:
 
-            #Erro de digitação
+            # Erro de digitação
             print("\n Erro: digite um número válido!")
 
-    print("=" * 50)
-    #OPÇÃO 6 - LISTAR PRODUTOS
-    print("=" * 50)
+    # =====================================================
+    # OPÇÃO 6 - LISTAR PRODUTOS
+    # =====================================================
     elif opcao == "6":
 
-        #Exibe todos os produtos
+        # Exibe todos os produtos
         listar_produtos()
 
-    print("=" * 50)
-    #OPÇÃO 0 - SAIR DO SISTEMA
-    print("=" * 50)
+    # =====================================================
+    # OPÇÃO 0 - SAIR DO SISTEMA
+    # =====================================================
     elif opcao == "0":
 
-        #Mensagem de encerramento
+        # Mensagem de encerramento
         print("\nEncerrando o sistema...")
 
-        #Interrompe o loop principal
+        # Interrompe o loop principal
         break
 
-    print("=" * 50)
-    #CASO O USUÁRIO DIGITE UMA OPÇÃO INVÁLIDA
-    print("=" * 50)
+    # =====================================================
+    # CASO O USUÁRIO DIGITE UMA OPÇÃO INVÁLIDA
+    # =====================================================
     else:
 
-        #Mensagem de erro
+        # Mensagem de erro
         print("\n Opção inválida!")
         
