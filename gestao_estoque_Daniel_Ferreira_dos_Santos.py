@@ -87,5 +87,38 @@ def consultar_estoque(produto_id):
     if produto_id ind estoque:
         #Armazena os dados do produto em uma variável
         produto = estoque[produto_id]
+
+        #Exibe os dados do produto
+        print("\n======== DADOS DO PRODUTOS ========")
+        print(f"ID: {produto_id}")
+        print(f"Nome: {produto['nome']}")
+        print(f"Categoria: {produto['categoria']}")
+        print(f"Preço: R$ {Produto[preco]:.2f}")
+        print(f"Quantidade em estoque: {produto['quantidade']}")
+    else:
+        #Mensagem caso o produto não exista
+        print("\n produto não encontrado!")
+print("=" * 50)
+#FUNÇÃO PARA IDENTIFICAR ESTOQUE BAIXO
+print("=" * 50)
+def alertar_estoque_baixo(limite):
+    """Identifica produto com estoque crítico"""
     
+    #Título da área de alerta
+    print("\n======== ESTOQUE BAIXO ========")
+    
+    #Variável de controle
+    encontrou = False
+
+    # Percorre todos os produtos do estoque
+    for produto_id, produto in estoque.items():
+
+        #Verifica se a quantidade é menor que o limite
+        if produto["quantidade"] < limite:
+
+            #Marca que encontrou um produto crítivo
+            encontrou = True
+            
+            #Exibe dados do produto
+            print(f"\nID: {produto_id}")
         
